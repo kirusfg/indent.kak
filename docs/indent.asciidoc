@@ -1,0 +1,25 @@
+= Indent
+
+== Usage
+
+Set a base indent level and automatically set indent level from buffer content.
+
+--------------------------------------------------------------------------------
+set-indent global 2
+enable-detect-indent
+--------------------------------------------------------------------------------
+
+Manually indent with `Tab`:
+
+--------------------------------------------------------------------------------
+enable-auto-indent
+--------------------------------------------------------------------------------
+
+== Commands
+
+- `set-indent`
+- `detect-indent`
+- `enable-detect-indent`
+- `disable-detect-indent`
+- `enable-auto-indent`
+- `disable-auto-indent`
