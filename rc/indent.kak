@@ -16,7 +16,9 @@ define-command -override detect-indent -docstring 'detect indent' %{
       # https://youtu.be/V7PLxL8jIl8
       try %{
         execute-keys '<a-k>\t<ret>'
-        set-option buffer tabstop 8
+        # Global scope
+        unset-option buffer tabstop
+        set-option buffer tabstop %opt{tabstop}
         set-option buffer indentwidth 0
       } catch %{
         set-option buffer tabstop %val{selection_length}
