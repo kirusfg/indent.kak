@@ -45,10 +45,12 @@ define-command -override disable-detect-indent -docstring 'disable detect indent
 define-command -override enable-auto-indent -docstring 'enable auto-indent' %{
   remove-hooks global auto-indent
   hook -group auto-indent global InsertChar '\n' %{
-    # Copy previous line indent
-    try %{ execute-keys -draft 'K<a-&>' }
-    # Clean previous line indent
-    try %{ execute-keys -draft 'k<a-x>s^\h+$<ret>d' }
+    evaluate-commands -draft -itersel %{
+      # Copy previous line indent
+      try %[ execute-keys -draft 'K<a-&>' ]
+      # Clean previous line indent
+      try %[ execute-keys -draft 'k<a-x>s^\h+$<ret>d' ]
+    }
   }
 
   # Disable other indent hooks:
