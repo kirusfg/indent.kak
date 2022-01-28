@@ -56,8 +56,9 @@ define-command -override enable-auto-indent -docstring 'enable auto-indent' %{
   set-option global disabled_hooks '(?!auto)(?!detect)\K(.+)-(trim-indent|insert|indent)'
 
   # Mappings
-  map -docstring 'indent' global insert <tab> '<a-;><a-gt>'
-  map -docstring 'deindent' global insert <s-tab> '<a-;><lt>'
+  # Increase and decrease indent with Tab.
+  map -docstring 'Increase indent' global insert <tab> '<a-;><a-gt>'
+  map -docstring 'Decrease indent' global insert <s-tab> '<a-;><lt>'
 }
 
 define-command -override disable-auto-indent -docstring 'disable auto-indent' %{
