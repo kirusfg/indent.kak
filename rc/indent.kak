@@ -1,9 +1,15 @@
 # Indent
 # Public commands: ["set-indent", "detect-indent", "enable-detect-indent", "disable-detect-indent", "enable-auto-indent", "disable-auto-indent"]
 
-define-command -override set-indent -params 2 -docstring 'set-indent <scope> <width>: set indent in <scope> to <width>' %{
+define-command -override set-indent -params 3 -docstring 'set-indent <scope> <width> <tabs>: set indent in <scope> to <width>, use tabs if <tabs> is true' %{
   set-option %arg{1} tabstop %arg{2}
-  set-option %arg{1} indentwidth %arg{2}
+  evaluate-commands %sh{
+    if [ "$3" = "true" ]; then
+      echo "set-option %arg{1} indentwidth 0"
+    else
+      echo "set-option %arg{1} indentwidth %arg{2}"
+    fi
+  }
 }
 
 define-command -override detect-indent -docstring 'detect indent' %{
